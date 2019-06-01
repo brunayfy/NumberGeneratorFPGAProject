@@ -14,3 +14,15 @@ Implement:
 * Subtrator utilizando FOR GENERATE com COMPONENTE para o subtrator-completo 
 * Deslocador para a esquerda (<<2) utilizando FUNCTION
 * FF tipo D utilizando PROCEDURE
+
+# How it works:
+x(i+1) = r * x(i) * (1 - x(i))
+
+0 < r    <= 4 (being 4 the maximum caos)
+0 < x(i) <1
+
+x(i+1) = 4 * x(i) * (1 -x(i))
+x(i+1) = x(i) * (1 -x(i)) <<2
+
+# Research :
+Ponto fixo(Q-format) Q.N(number of bits)
