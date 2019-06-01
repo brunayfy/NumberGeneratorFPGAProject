@@ -1,3 +1,4 @@
+use work.packagefpga.all; 
 entity logisticmap is
 	generic(
 		bussize	: integer := 16
