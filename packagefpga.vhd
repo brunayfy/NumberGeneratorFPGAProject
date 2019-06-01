@@ -1,8 +1,10 @@
 --definition of the package of the project
+library ieee;
+use ieee.std_logic_1164.all;
 package packagefpga is 
     --declaration of subprograms , contants, components, types, 
     --subtypes, signals, variables shared here
-    generic(bussize: integer); --declaracao do generic
+    constant bussize: integer; --declaracao do generic
     component adder
         port(
             x, y: in std_logic_vector(bussize-1 downto 0);
@@ -30,13 +32,20 @@ package packagefpga is
             
         );
     end component;
-
+    component ffd is
+        port(
+            D: in std_logic_vector(bussize-1 downto 0);
+            Q: out std_logic_vector(bussize-1 downto 0);
+            clk: in std_logic;
+            clr: in std_logic
+        );
+    end component;
     --constant exemplo:bit_vector;
     --signal exemplo:bit;
 end packagefpga; 
 
-package body pkgfpga is
-    generic (bussize :integer :=16); --valor do generic definido
+package body packagefpga is
+    constant bussize :integer :=16; --valor do generic definido
     --constant exemplo:bit_vector(2 downto 0):="101";
     --body of subprograms here
-end pkgfpga ;
+end packagefpga ;

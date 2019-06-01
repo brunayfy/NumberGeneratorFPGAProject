@@ -1,3 +1,5 @@
+library ieee;
+use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
 entity logisticmap is
 	generic(
@@ -10,3 +12,7 @@ entity logisticmap is
 		xnout		: out	std_logic_vector(bussize-1 downto 0)
 		);
 end logisticmap;
+
+architecture lmap of logisticmap is
+begin
+end lmap;
