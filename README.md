@@ -16,12 +16,19 @@ Implement:
 * FF tipo D utilizando PROCEDURE
 
 # How it works:
+
 x(i+1) = r * x(i) * (1 - x(i))
 
+being:
+
 0 < r    <= 4 (being 4 the maximum caos)
+
 0 < x(i) <1
 
+So that x(i+1) is:
+
 x(i+1) = 4 * x(i) * (1 -x(i))
+
 x(i+1) = x(i) * (1 -x(i)) <<2
 
 # Research :
