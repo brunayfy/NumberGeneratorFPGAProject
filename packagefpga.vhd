@@ -5,7 +5,14 @@ package packagefpga is
     --declaration of subprograms , contants, components, types, 
     --subtypes, signals, variables shared here
     constant bussize: integer; --declaracao do generic
+    procedure ffd (clk: in std_logic; clr:in std_logic; D: in std_logic_vector;  signal Q: out std_logic_vector);
+    
     component adder
+        port(a, b, ve  : IN  BIT;
+            s, vs     : OUT BIT); 
+    end component;
+      
+    component full_adder
         port(
             x, y: in std_logic_vector(bussize-1 downto 0);
             s: out std_logic_vector(bussize-1 downto 0);
@@ -28,24 +35,34 @@ package packagefpga is
             x0 : in std_logic_vector(bussize-1 downto 0);
             z : in std_logic_vector(bussize-1 downto 0); 
             y : out std_logic_vector(bussize-1 downto 0);
-            start : in bit
-            
+            start : in bit        
         );
     end component;
-    component ffd is
+
+    component multiplier
         port(
-            D: in std_logic_vector(bussize-1 downto 0);
-            Q: out std_logic_vector(bussize-1 downto 0);
-            clk: in std_logic;
-            clr: in std_logic
+            x,y : in std_logic_vector(bussize-1 downto 0); 
+            p : out std_logic_vector(bussize*2-1 downto 0)
         );
     end component;
-    --constant exemplo:bit_vector;
-    --signal exemplo:bit;
+
 end packagefpga; 
 
 package body packagefpga is
-    constant bussize :integer :=16; --valor do generic definido
-    --constant exemplo:bit_vector(2 downto 0):="101";
-    --body of subprograms here
+    constant bussize :integer :=16; --deferred constant(changing its value only need to recompile body of package)
+    --body of subprograms  and procedures here
+    procedure ffd (clk: in std_logic; clr:in std_logic; D: in std_logic_vector(bussize-1 downto 0);  signal Q: out std_logic_vector(bussize-1 downto 0)) is
+        --declaracao de tipo, constante, variavel
+        begin--codigo sequencial
+        if clr'event and clr ='1' then 
+            Q <= "0";    
+        elsif clk'event and clk ='1' then 
+            Q <= D;
+        end if;
+    end ffd;
+    --use must be inside a process:
+    -- abc:process(clk,clr)
+    -- begin
+    --    ffd(clk,clr,D,Q);
+    -- end process;
 end packagefpga ;
