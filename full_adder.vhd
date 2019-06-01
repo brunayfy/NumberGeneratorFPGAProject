@@ -1,7 +1,7 @@
 -- n bits full adder.
 -- 'x', 'y' are the inputs, 's' is the output. 'cin' is the carry in and 'cout' the carry out.
 -- y <= x + y
-architecture adder_rtl of adder is
+architecture adder_rtl of full_adder is
     signal c: std_logic_vector(bussize downto 0); -- Local carry.
     begin
     

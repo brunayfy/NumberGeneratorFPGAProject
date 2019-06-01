@@ -8,8 +8,8 @@ package packagefpga is
     procedure ffd (clk: in std_logic; clr:in std_logic; D: in std_logic_vector;  signal Q: out std_logic_vector);
     
     component adder
-        port(a, b, ve  : IN  BIT;
-            s, vs     : OUT BIT); 
+        port(a, b, ve  : in std_logic;
+            s, vs     : out std_logic); 
     end component;
       
     component full_adder
@@ -41,7 +41,7 @@ package packagefpga is
 
     component multiplier
         port(
-            x,y : in std_logic_vector(bussize-1 downto 0); 
+            a,b : in std_logic_vector(bussize-1 downto 0); 
             p : out std_logic_vector(bussize*2-1 downto 0)
         );
     end component;
@@ -49,7 +49,7 @@ package packagefpga is
 end packagefpga; 
 
 package body packagefpga is
-    constant bussize :integer :=16; --deferred constant(changing its value only need to recompile body of package)
+    constant bussize :integer :=3; --deferred constant(changing its value only need to recompile body of package)
     --body of subprograms  and procedures here
     procedure ffd (clk: in std_logic; clr:in std_logic; D: in std_logic_vector(bussize-1 downto 0);  signal Q: out std_logic_vector(bussize-1 downto 0)) is
         --declaracao de tipo, constante, variavel

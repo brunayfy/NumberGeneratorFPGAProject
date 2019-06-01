@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
 entity logisticmap is
 	generic(
-		bussize	: integer := 16
+		bussize	: integer := 3
 		);
 	port(
 		clk, clr	: in	std_logic;
@@ -16,7 +16,7 @@ end logisticmap;
 library ieee;
 use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
-entity adder is
+entity full_adder is
 	port(
 		x, y: in std_logic_vector(bussize-1 downto 0);
 		s: out std_logic_vector(bussize-1 downto 0);
@@ -25,10 +25,11 @@ entity adder is
 	);
 end entity;
 
+
 library ieee;
 use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
-entity subtractor is
+entity full_subtractor is
 	port(
 		x, y: in std_logic_vector(bussize-1 downto 0);
 		s: out std_logic_vector(bussize-1 downto 0);
@@ -55,10 +56,8 @@ use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
 entity multiplier is
 	port(
-		x0 : in std_logic_vector(bussize-1 downto 0);
-		z : in std_logic_vector(bussize-1 downto 0); 
-		y : out std_logic_vector(bussize-1 downto 0);
-		start : in bit
+		a,b : in std_logic_vector(bussize-1 downto 0); 
+		p : out std_logic_vector(bussize*2-1 downto 0)
 		
 	);
 end entity;
