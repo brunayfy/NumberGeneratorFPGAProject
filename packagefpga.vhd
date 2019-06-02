@@ -12,7 +12,7 @@ package packagefpga is
             s, vs     : out std_logic); 
     end component;
       
-    component full_adder
+    component n_adder
         port(
             x, y: in std_logic_vector(bussize-1 downto 0);
             s: out std_logic_vector(bussize-1 downto 0);
@@ -21,7 +21,7 @@ package packagefpga is
         );
     end component;
 
-    component subtractor
+    component n_subtractor
         port(
             x, y: in std_logic_vector(bussize-1 downto 0);
             s: out std_logic_vector(bussize-1 downto 0);

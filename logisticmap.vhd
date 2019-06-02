@@ -16,7 +16,7 @@ end logisticmap;
 library ieee;
 use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
-entity full_adder is
+entity n_adder is
 	port(
 		x, y: in std_logic_vector(bussize-1 downto 0);
 		s: out std_logic_vector(bussize-1 downto 0);
@@ -29,7 +29,7 @@ end entity;
 library ieee;
 use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
-entity full_subtractor is
+entity n_subtractor is
 	port(
 		x, y: in std_logic_vector(bussize-1 downto 0);
 		s: out std_logic_vector(bussize-1 downto 0);
