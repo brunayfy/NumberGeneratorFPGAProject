@@ -75,7 +75,7 @@ use ieee.std_logic_1164.all;
 use work.packagefpga.all;
 entity shift2 is
 	port(
-		x: in std_logic_vector(bussize-1 downto 0);  
+		x: in std_logic_vector(bussize*2-1 downto 0);  
 		z: out std_logic_vector(bussize-1 downto 0));
 end entity;
 
@@ -93,7 +93,7 @@ begin
 	flipflopd: ffd port map(clk,clr,D,Q);
 	mult: multiplier port map(Q,Q,Qsq);
 	sub1: n_subtractor port map(Qsq(bussize*2-1 downto bussize), Q, sub_out(bussize*2-1 downto bussize),'0',c);
-	sub2: n_subtractor port map(Qsq(bussize-1 downto 0),(others =>'0'), sub_out(bussize-1 downto 0), c, '-');
+	sub2: n_subtractor port map(Qsq(bussize-1 downto 0),(others =>'0'), sub_out(bussize-1 downto 0), c, open);
 	shift: shift2 port map(sub_out,z);
 
 	xnout <=z;

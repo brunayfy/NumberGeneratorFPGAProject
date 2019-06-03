@@ -4,8 +4,8 @@ architecture ffd_rtl of ffd is
                             signal D: in std_logic_vector(bussize-1 downto 0);  
                             signal Q: out std_logic_vector(bussize-1 downto 0)) is
     begin --codigo sequencial.
-            if (clr'event and clr ='1') then 
-                Q <= "0000000000000000";    
+            if (clr ='1') then 
+                Q <= (others => '0');    
             elsif (clk'event and clk ='1') then 
                 Q <= D;
             end if;
