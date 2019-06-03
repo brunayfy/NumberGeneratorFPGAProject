@@ -49,7 +49,7 @@ package packagefpga is
 end packagefpga; 
 
 package body packagefpga is
-    constant bussize :integer :=3; --deferred constant(changing its value only need to recompile body of package)
+    constant bussize :integer :=16; --deferred constant(changing its value only need to recompile body of package)
     --body of subprograms  and procedures here
     procedure ffd (clk: in std_logic; clr:in std_logic; D: in std_logic_vector(bussize-1 downto 0);  signal Q: out std_logic_vector(bussize-1 downto 0)) is
         --declaracao de tipo, constante, variavel
