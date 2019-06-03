@@ -56,7 +56,7 @@ use ieee.std_logic_1164.all;
 use work.packagefpga.all; 
 entity multiplier is
 	port(
-		a,b : in std_logic_vector(bussize-1 downto 0); 
+		x,y : in std_logic_vector(bussize-1 downto 0); 
 		p : out std_logic_vector(bussize*2-1 downto 0)
 		
 	);

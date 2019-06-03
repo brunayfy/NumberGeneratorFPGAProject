@@ -1,28 +1,33 @@
---Exercício 7.6.6
---Multiplicador
---Descrição:
---
-
 ARCHITECTURE multiplier_rtl OF multiplier IS
-    SIGNAL p2,p1 : std_logic_vector (0 to 2); -- vai um interno 
-    SIGNAL p1b,p0b : std_logic_vector (1 to 2); -- vai um interno 
-    SIGNAL c1,c0 : std_logic_vector (1 to 3); -- vai um interno 
-BEGIN   
-    p(0) <= a(0) and b(0);
-    p2(0) <= a(2) and b(0);
-    p1(0) <= a(1) and b(0);
-    p1b(1) <= a(1) and b(1);
-    p1b(2) <= a(1) and b(2);
-    p0b(1) <= a(0) and b(1);
-    p0b(2) <= a(0) and b(2);
-    --abc: FOR i IN 0 TO 2 GENERATE 
-    --    c1: som_1a PORT MAP (p2(i),a(1) and b(i+1), c1(i+1), p1(i+1), c(i+1));
-    --END GENERATE abc; 
-    c10: adder PORT MAP( p2(0), p1b(1), '0' , p1(1), c1(1)); 
-    c11: adder PORT MAP( p2(1), p1b(2), c1(1), p1(2), c1(2)); 
-    c12: adder PORT MAP( p2(2), c0(3) , c1(2), p(4) , p(5));
+    type vec is array (bussize -1 downto 0)  of std_logic_vector (bussize -1 downto 0);
+    signal sum: vec ;
+    signal cout :std_logic_vector (bussize -2 downto 0);
+    function andbit (ybit : std_logic; xvector: std_logic_vector(bussize-1 downto 0)) return std_logic_vector is
+    constant zeros :std_logic_vector(xvector'range) := (others=> '0'); 
+    begin
+        if (ybit='1') then
+            return xvector;
+        else 
+            return zeros;
+        end if;
+    end andbit;
+BEGIN
+    
+    cout(0) <= '0';
+    sum(0) <= andbit(y(0),x);
+    --abc: for j in 0 to bussize -1 generate
+    --    sum(0)(j) <= y(0) and x(j);
+    --end generate;
+    --p(bussize*2 - 1) <= cout(bussize-1) ;
+    --p((bussize*2 - 2) downto (bussize -1)) <=sum(bussize-1)((bussize -1) downto 0);
 
-    c00: adder PORT MAP( p1(0), p0b(1), '0' , p(1), c0(1));
-    c01: adder PORT MAP( p1(1), p0b(2), c0(1), p(2), c0(2)); 
-    c02: adder PORT MAP( p1(2), '0'   , c0(2), p(3), c0(3));
+    --p((bussize*2 - 1) downto (bussize -1)) <= (cout(bussize-1) ,sum(bussize-1)((bussize -1) downto 0));
+    p((bussize*2 - 1) downto (bussize -1)) <= (cout(bussize-1) & sum(bussize-1)((bussize -1) downto 0));
+
+
+    nbitadders: FOR i IN 0 TO bussize-2 GENERATE 
+        --                   (x            ,y                                        ,s       , cin,cout     )
+        ci: n_adder PORT MAP (andbit(y(i+1),x), (cout(i) & sum(i)(bussize-1 downto 1)),sum(i+1) , '0', cout(i+1));
+        p(i) <= sum(i)(0);
+    END GENERATE nbitadders; 
 END multiplier_rtl;

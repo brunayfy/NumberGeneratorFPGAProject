@@ -41,7 +41,7 @@ package packagefpga is
 
     component multiplier
         port(
-            a,b : in std_logic_vector(bussize-1 downto 0); 
+            x,y : in std_logic_vector(bussize-1 downto 0); 
             p : out std_logic_vector(bussize*2-1 downto 0)
         );
     end component;
@@ -60,6 +60,7 @@ package body packagefpga is
             Q <= D;
         end if;
     end ffd;
+
     --use must be inside a process:
     -- abc:process(clk,clr)
     -- begin
