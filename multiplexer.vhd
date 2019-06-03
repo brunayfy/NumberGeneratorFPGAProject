@@ -4,6 +4,7 @@ architecture multiplexer_rtl of multiplexer is
 begin
     with start select
         y <= x0 when '1',
-             z when '0';
+             z when '0',
+				 x0 when others;
     
 end multiplexer_rtl;
