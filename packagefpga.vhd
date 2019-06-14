@@ -59,6 +59,5 @@ end packagefpga;
 
 
 package body packagefpga is
-    --constant bussize :integer :=3; --deferred constant(changing its value only need to recompile body of package).
     --body of subprograms  and procedures here.
 end packagefpga;
