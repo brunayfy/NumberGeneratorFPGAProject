@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.packagefpga.all;
 entity multiplier is
+    	generic( bussize: integer := 16);		
 	port(
 		x,y : in std_logic_vector(bussize-1 downto 0); 
 		p : out std_logic_vector(bussize*2-1 downto 0)
