@@ -4,8 +4,9 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
-use work.packagefpga.all;
+use work.logisticmap_pkg.all;
 entity n_adder is
+	generic(bussize:integer :=20);
 	port(
 		x, y: in std_logic_vector(bussize-1 downto 0);
 		s: out std_logic_vector(bussize-1 downto 0);
